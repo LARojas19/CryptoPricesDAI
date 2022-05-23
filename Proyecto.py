@@ -10,10 +10,53 @@ import numpy as np
 import matplotlib.pyplot as plt
 datos=pd.read_csv('D:\DAI\Proyecto\crypto_prices.csv')
 nuevo = datos.sort_values('Unnamed: 0', ascending=False)
-valores = nuevo.groupby(['ticker'])
+# print(datos.head(5))
+# print(nuevo.head(5))
+valores = datos.groupby(['ticker'])
+# print(list(valores.head(1)['ticker']))
 dicTicker={}
+for i in valores:
+    # print(type(i))
+    # print(i[0])
+    dicTicker[i[0]]= i[1]
+    #La siguiente linea elimina los renglones que no tienen fecha
+    # dicTicker[i[0]]=dicTicker[i[0]][dicTicker[i[0]]['Date'] != 'No data is available now']
+    # dicTicker[i[0]]=dicTicker[i[0]][dicTicker[i[0]]['Date'] != 'Loading data...']
+    #Esta linea agrega una columna con la fecha en formato numerico
+    # serieNumDate =pd.to_datetime(dicTicker[i[0]]['Date'])
+    # dicTicker[i[0]]['NumDate']=serieNumDate
+    # dicTicker[i[0]].loc
+    # dicTicker[i[0]].index = range(dicTicker[i[0]].shape[0])
 
+# for i in list(dicTicker.values()):
+#     i=i[i['Date'] != 'No data is available now']
+#     i=i[i['Date'] != 'Loading data...']
+#     i['NumDate']=pd.to_datetime(i['Date'])
 
+# print(dicTicker.keys())
+#%%
+# print(dicTicker['AVA'].shape)
+# print(list(dicTicker.values())[0])
+# dicTicker['AVA'].index = range(dicTicker['AVA'].shape[0])
+# print(dicTicker['AVA']['Date'][0])
+# print(pd.to_datetime(dicTicker['AVA']['Date'][0]))
+# print(pd.to_datetime(dicTicker['AVA']['Date']))
+# print(dicTicker['BTC'].shape)
+# dicTicker['BTC']=dicTicker['BTC'][dicTicker['BTC']['Date'] != 'No data is available now']
+# print(dicTicker['BTC'])
+# print(pd.to_datetime(dicTicker['BTC']['Date']))
+# dicTicker['BTC']['NumDate']=pd.to_datetime(dicTicker['BTC']['Date'])
+# print(dicTicker['BTC'])
+# print(dicTicker['BTC']['NumDate'])
+# dicTicker['BTC']=dicTicker['BTC'][dicTicker['BTC']['Close'] != None]
+# print(dicTicker['BTC'].iloc[1])
+# print(dicTicker['BTC'].iloc[2])
+# dicBt = {}
+# for i in dicTicker['BTC'].groupby('TokenName'):
+    # dicBt[i[0]]=i[1]
+# print(dicBt.keys())
+# dicTicker['BTC']=dicTicker['BTC'].sort_values('NumDate',ascending = False)
+# print(dicTicker['BTC'])
 
 
 """
